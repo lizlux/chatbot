@@ -54,9 +54,15 @@ router.get("/prompt", async function (req, res, next) {
   res.setHeader("Connection", "keep-alive");
 
   console.log("prompt has been called");
+  const { prompt } = req.query;
+  console.log(prompt);
+  if (!prompt) {
+    console.error("no prompt");
+    res.end();
+  }
 
   // Send an initial message
-  res.write(`data: Connected to server\n\n`);
+  // res.write(`data: Connected to server\n\n`);
 
   // Simulate sending updates from the server
   // let counter = 0;
@@ -78,7 +84,7 @@ router.get("/prompt", async function (req, res, next) {
     messages: [
       {
         role: "user",
-        content: "Write a one-sentence bedtime story about a unicorn.",
+        content: prompt,
       },
     ],
     stream: true,
@@ -87,8 +93,8 @@ router.get("/prompt", async function (req, res, next) {
   for await (const chunk of stream) {
     if (chunk.choices[0].finish_reason === "stop") {
       console.log("time to stop");
-      res.write(`data: end\n\n`);
-      // res.end();
+      // res.write(`data: end\n\n`);
+      // res.end();  // this throws an error
     } else {
       const content = chunk.choices[0].delta.content;
       console.log(content);

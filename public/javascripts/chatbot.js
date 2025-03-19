@@ -1,14 +1,20 @@
 const formElem = document.getElementById("form");
-const stop = document.getElementById("stop");
+const stopElem = document.getElementById("stop");
+const responseElem = document.getElementById("response");
+let responseText = "";
 
 formElem.onsubmit = async (e) => {
   e.preventDefault();
   const formData = new FormData(formElem);
   const prompt = formData.get("prompt");
-  const eventSource = new EventSource("/chatbot/prompt");
+  const eventSource = new EventSource(
+    `/chatbot/prompt?prompt=${encodeURIComponent(prompt)}`
+  );
 
   eventSource.onmessage = (event) => {
-    console.log(event);
+    console.log(event.data);
+    responseText = `${responseText} ${event.data}`;
+    responseElem.innerHTML = responseText;
   };
 
   eventSource.onerror = function (event) {
@@ -16,7 +22,7 @@ formElem.onsubmit = async (e) => {
     eventSource.close();
   };
 
-  stop.onclick = () => {
+  stopElem.onclick = () => {
     eventSource.close();
   };
 
