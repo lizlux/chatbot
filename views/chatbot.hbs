@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+  </head>
 
 <body>
   <p>{{title}} is {{story}}</p>
+
+  <form id="form">
+    <label>Prompt:</label>
+    <textarea id="prompt" name="prompt"></textarea>
+    <button type="submit">Ask ChatBot</button>
+  </form>
+  <script src="/javascripts/chatbot.js"></script>
 </body>
 
 </html>
