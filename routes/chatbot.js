@@ -1,5 +1,8 @@
-// // import OpenAI from "openai";
-// // const client = new OpenAI();
+var express = require("express");
+var router = express.Router();
+
+var OpenAI = require("openai");
+const client = new OpenAI();
 
 // /* GET users listing. */
 // router.get("/", async function (req, res, next) {
@@ -22,12 +25,21 @@
 
 // module.exports = router;
 
-var express = require("express");
-var router = express.Router();
-
 /* GET users listing. */
-router.get("/", function (req, res, next) {
-  // res.send("respond with a resource");
+router.get("/", async function (req, res, next) {
+  const completion = await client.chat.completions.create({
+    model: "gpt-4o",
+    messages: [
+      {
+        role: "user",
+        content: "Write a one-sentence bedtime story about a unicorn.",
+      },
+    ],
+  });
+
+  const story = completion.choices[0].message.content;
+
+  console.log(story);
 
   res.render("chatbot", { title: "chatbot" });
 });
