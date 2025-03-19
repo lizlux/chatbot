@@ -3,9 +3,12 @@ var router = express.Router();
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  console.log("TRY INDEX");
+  let demo = {
+    name: "Rohan",
+    age: 27,
+  };
 
-  res.render("index", { title: "Express" });
+  res.render("index", { demo: demo });
 });
 
 module.exports = router;
