@@ -48,4 +48,26 @@ router.get("/", async function (req, res, next) {
   res.render("chatbot", { title: "chatbot", story: "foo" });
 });
 
+router.post("/prompt", async function (req, res, next) {
+  // const stream = await client.chat.completions.create({
+  //   model: "gpt-4o",
+  //   messages: [
+  //     {
+  //       role: "user",
+  //       content: "Write a one-sentence bedtime story about a unicorn.",
+  //     },
+  //   ],
+  //   stream: true,
+  // });
+
+  // for await (const chunk of stream) {
+  //   console.log(chunk.choices[0].delta.content);
+  // }
+
+  // const story = completion.choices[0].message.content;
+  // console.log(story);
+
+  res.json({ chatbot: "foo" });
+});
+
 module.exports = router;
