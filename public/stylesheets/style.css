@@ -3,6 +3,12 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+form {
+  display: block;
+  width: 400px;
+  max-width: 100%;
+}
+
 a {
   color: #00B7FF;
 }
@@ -12,11 +18,13 @@ label {
 }
 
 textarea {
-  width: 400px;
-  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
   height: 200px;
   margin: 10px 0;
   display: block;
+  border: 1px solid blue;
+  border-radius: 5px;
 }
 
 button {
@@ -28,4 +36,17 @@ button {
   font-weight: bold;
   color: blue;
   cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hidden {
+  display: none;
+}
+
+#response {
+  white-space: pre-line;
 }

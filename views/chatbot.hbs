@@ -2,18 +2,20 @@
 <html>
   <head>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-
+    <title>{{title}}</title>
   </head>
 
 <body>
-  <p>{{title}} is {{story}}</p>
+  <h1>Welcome to the Chatbot!</h1>
 
   <form id="form">
-    <label>Prompt:</label>
+    <label>Enter your prompt below:</label>
     <textarea id="prompt" name="prompt"></textarea>
-    <button type="submit">Ask ChatBot</button>
+    <div class="buttons">
+      <button id="ask-chatbot">Ask ChatBot</button>
+      <button id="stop" class="hidden">Stop</button>
+    </div>
   </form>
-  <button id="stop">Stop</button>
 
   <div id="response"></div>
 
